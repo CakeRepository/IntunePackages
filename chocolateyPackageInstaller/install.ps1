@@ -1,16 +1,12 @@
 param(
+    [string]$params = "",
+    [Parameter (Mandatory)]
     [string]$package = "",
-    [string]$sourceserver = "",
     [switch]$uninstall = $false
 )
 
 if ($uninstall) {
     choco uninstall $package -y
 } else {
-    if($sourceserver){
-        choco upgrade $package -y --source="$($sourceserver)"
-    }
-    else{
-        choco upgrade $package -y
-    }
+    choco upgrade $package -y $params.split('@')
 }
