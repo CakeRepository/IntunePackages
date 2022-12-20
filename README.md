@@ -16,12 +16,12 @@ Make sure you add dependencies to chocolatey before every chocolateyPackageInsta
 After testing on a test box with the syntax you need from Installing.
 If the example was 
 ```
-.\chocolateyPackageInstaller\install.ps1 -package *PACKAGENAME* -params '--version=4.28.184 @--source=https://community.chocolatey.org/api/v2/'
+.\chocolateyPackageInstaller\install.ps1 -package *PACKAGENAME* -chocoparam "--source=https://community.chocolatey.org/api/v2/, --version=8.4.5"
 ```
 
 Your intune install script would be
 ```
-powershell.exe -executionpolicy bypass .\install.ps1 -package *PACKAGENAME* -params '--version=4.28.184 @--source=https://community.chocolatey.org/api/v2/'
+powershell.exe -executionpolicy bypass .\install.ps1 -package *PACKAGENAME* -chocoparam "--source=https://community.chocolatey.org/api/v2/, --version=8.4.5"
 ```
 The uninstall script would be
 ```
@@ -34,11 +34,11 @@ For normal install right from the community page use this
 .\chocolateyPackageInstaller\install.ps1 -package *PACKAGENAME*
 ```
 
-Currently in -params '' the @ symbol is being used to split the variables. So you can use any number of the chocolatey install switches just make sure to seperate them with a @. I will re-work this in the future to allow just plain text passthrough. Or if you want to create a pull request and fix it that would be great too :P
+Currently in -chocoparam "" the , is being used to split the variables. So you can use any number of the chocolatey install switches just make sure to seperate them with a ','. 
 
 To specify version and source use this change the package to whatever package you would like from the community or your private repository.
 ``` 
-.\chocolateyPackageInstaller\install.ps1 -package *PACKAGENAME* -params '--version=4.28.184 @--source=https://community.chocolatey.org/api/v2/' 
+.\chocolateyPackageInstaller\install.ps1 -package *PACKAGENAME* -chocoparam "--version=4.28.184, --source=https://community.chocolatey.org/api/v2/"
 ```
 
 ## Uninstalling
